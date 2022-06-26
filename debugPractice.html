@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScriptデバッグ練習</title>
+</head>
+<body>
+<h1>フリマサービスの出品画面を想定</h1>
+<form method="post" action="" enctype="multipart/form-data">
+    <div>
+        40文字以内でご入力ください
+    </div>
+    <label for="name">
+        商品名
+        <input type="text" name="name" id="js-count">
+    </label>
+    <div>
+        <span id="js-show-count">0</span>/40
+    </div>
+    <br>
+    <label for="pic">
+        <input type="file" id="file-input">
+        <img src="" alt="" id="file-img">
+    </label>
+    <br>
+    <label for="price">
+        値段
+        <input type="number" name="price" id="">
+        img
+    </label>
+    <br>
+    <input type="submit" value="出品する">
+</form>
+
+<script>
+    window.addEventListener('load', function() {
+
+    let jsCount = document.getElementById("js-count");
+    let jsShowCount = document.getElementById("js-show-count");
+
+    jsCount.addEventListener('keyup', function (e) {
+        var textLength = this.value.length;
+        // console.log(textLength);
+        console.log({e});
+        //イベントを取得
+        // console.table({e});
+        let eTatget = e.target
+        let eLength = e.target.value.length;
+        // console.log({eTatget});
+        // console.log({eLength});
+        // console.table(eTatget);
+        // console.log(this);
+        // console.info(this);
+        //要素を取得
+        let aThis = this;
+        // console.table({aThis});
+        // if (eTatget === aThis) {
+        //     console.log('thisはeに含まれる');
+        // } else {
+        //     console.log('thisはeに含まれない');
+        // }
+
+        jsShowCount.textContent = textLength;
+    })
+
+//    プレビュー機能を書いてみる
+//    ドキュメントの参照でどこに躓くか
+    let fileInput = document.getElementById('file-input');
+    let fileImg = document.getElementById('file-img');
+
+    fileInput.addEventListener('change', function () {
+        // console.log(this.files);
+        // console.log(this.form);
+        // console.table(this.files);
+        let file = this.files[0];
+
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (file) {
+            // var path = this.readAsDataURL(file)
+            //ここにreadAsDataURLの処理が合ったほうがわかりやすい
+            //たぶんできるのではないか
+            fileImg.setAttribute('src', this.result);
+        }
+        // reader.onload = function (e) {
+        //     console.log(e.target);
+        //     console.log(this);
+        //
+        //     fileImg.setAttribute('src', e.target.result);
+        // };
+
+
+        // reader.addEventListener('load', function () {
+        //     fileImg.setAttribute('src', this.result)
+        // })
+    });
+
+    })
+</script>
+</body>
+</html>

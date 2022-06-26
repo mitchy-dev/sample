@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ChromeでJavaScriptのデバッグ</title>
+</head>
+
+<body>
+<h1>ChromeでJavaScriptのデバッグ</h1>
+
+<!--button要素。クラス属性名はbutton-->
+<button class="button">クリックしてください</button>
+
+<!--JavaScriptの記述-->
+<script>
+    window.addEventListener('load', function() {
+
+        //HTMLのbutton要素のクラス属性「button」を指定して要素を取得したい
+        let button = document.querySelectorAll('button');
+
+        //button要素をクリックしたらアラートが表示されるようにしたい。
+        button[0].addEventListener('click', function () {
+            let clicked = 'クリックされました';
+            alert(clicked);
+        });
+
+    });
+</script>
+<!--JavaScriptの記述ここまで-->
+
+</body>
+</html>
