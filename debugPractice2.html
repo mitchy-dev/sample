@@ -83,6 +83,22 @@
 <!--JavaScriptの記述-->
 <script>
     window.addEventListener('load', function() {
+        window.switchTextSize = function(cssname) {
+            if (cssname == "") { cssname = "middle"; }
+            var cssurl = 'common/css/' + cssname + '.css';
+            //alert(cssurl); //@@debug@@
+            $('#styleTextSize').attr({ href: cssurl });
+            setCookie("TextSize", cssname);
+        }
+
+        $('#txt-standard').click(function() { switchTextSize('middle') });
+        $('#txt-large').click(function() { switchTextSize('big') });
+        $('#txt-small').click(function() { switchTextSize('small') });
+
+        var textMedium = document.getElementById('text-medium');
+        var textSmall = document.getElementById('text-small');
+        var textLarge = document.getElementById('text-large');
+
 
     });
 </script>
