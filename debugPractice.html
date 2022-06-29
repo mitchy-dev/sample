@@ -1,99 +1,86 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <title>JavaScriptデバッグ練習</title>
+    <title>ChromeでJavaScriptのデバッグ</title>
 </head>
+
+<style>
+    div {
+        padding-left: 16px;
+    }
+
+    h1 {
+        padding-top: 16px;
+        padding-bottom: 32px;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+    }
+
+    li {
+        float: left;
+        color: #0a0a0a;
+        font-size: 24px;
+        margin-right: 16px;
+        padding: 12px 24px;
+        background-color: #cedaf3;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    p {
+        /*16, 32に変化させる*/
+        font-size:24px;
+        line-height:3;
+    }
+</style>
 <body>
-<h1>フリマサービスの出品画面を想定</h1>
-<form method="post" action="" enctype="multipart/form-data">
-    <div>
-        40文字以内でご入力ください
-    </div>
-    <label for="name">
-        商品名
-        <input type="text" name="name" id="js-count">
-    </label>
-    <div>
-        <span id="js-show-count">0</span>/40
-    </div>
-    <br>
-    <label for="pic">
-        <input type="file" id="file-input">
-        <img src="" alt="" id="file-img">
-    </label>
-    <br>
-    <label for="price">
-        値段
-        <input type="number" name="price" id="">
-        img
-    </label>
-    <br>
-    <input type="submit" value="出品する">
-</form>
+
+<div>
+  <h1>ChromeでJavaScriptのデバッグ</h1>
+
+  <ul>
+    <li id="text-large">大</li>
+    <li id="text-medium">中</li>
+    <li id="text-small">小</li>
+  </ul>
+
+  <p id="text">読みやすい文字の大きさ</p>
+</div>
 
 <script>
     window.addEventListener('load', function() {
-
-    let jsCount = document.getElementById("js-count");
-    let jsShowCount = document.getElementById("js-show-count");
-
-    jsCount.addEventListener('keyup', function (e) {
-        var textLength = this.value.length;
-        // console.log(textLength);
-        console.log({e});
-        //イベントを取得
-        // console.table({e});
-        let eTatget = e.target
-        let eLength = e.target.value.length;
-        // console.log({eTatget});
-        // console.log({eLength});
-        // console.table(eTatget);
-        // console.log(this);
-        // console.info(this);
-        //要素を取得
-        let aThis = this;
-        // console.table({aThis});
-        // if (eTatget === aThis) {
-        //     console.log('thisはeに含まれる');
-        // } else {
-        //     console.log('thisはeに含まれない');
-        // }
-
-        jsShowCount.textContent = textLength;
-    })
-
-//    プレビュー機能を書いてみる
-//    ドキュメントの参照でどこに躓くか
-    let fileInput = document.getElementById('file-input');
-    let fileImg = document.getElementById('file-img');
-
-    fileInput.addEventListener('change', function () {
-        // console.log(this.files);
-        // console.log(this.form);
-        // console.table(this.files);
-        let file = this.files[0];
-
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (file) {
-            // var path = this.readAsDataURL(file)
-            //ここにreadAsDataURLの処理が合ったほうがわかりやすい
-            //たぶんできるのではないか
-            fileImg.setAttribute('src', this.result);
-        }
-        // reader.onload = function (e) {
-        //     console.log(e.target);
-        //     console.log(this);
-        //
-        //     fileImg.setAttribute('src', e.target.result);
-        // };
+        var textLarge = document.getElementById('text-large');
+        var textMedium = document.getElementById('text-medium');
+        var textSmall = document.getElementById('text-small');
+        var text = document.getElementById('text');
 
 
-        // reader.addEventListener('load', function () {
-        //     fileImg.setAttribute('src', this.result)
-        // })
-    });
+        textLarge.addEventListener('click', function(){
+            text.style.fontSize = '32px';
+        });
+
+        textMedium.addEventListener('click', function(){
+            text.style.fontSize = '24px';
+        });
+
+        textSmall.addEventListener('click', function(){
+            text.style.fontSize = '16px';
+        });
+
+
+
+
+
+
+
+
+
 
     })
 </script>
